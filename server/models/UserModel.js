@@ -27,8 +27,24 @@ const UserSchema=mongoose.Schema({
             type:String,
             default:Date.now().toString(),
         }}
+    ],
+    CompletedTodo:[
+        {name:{
+            type:String,
+            required:true
+        },
+        done:{
+            type:Boolean,
+            default:true
+        },
+        date:{
+            type:String,
+            default:Date.now().toString(),
+        }}
     ]
 });
+
+
 
 const UserSchemaModel=mongoose.model('User',UserSchema);
 

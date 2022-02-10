@@ -4,6 +4,7 @@ import ShowAllTodo from './components/ShowAllTodo';
 import {useSelector } from 'react-redux';
 import { Button } from "@material-ui/core";
 import { useNavigate } from 'react-router-dom';
+import CompletedTodo from "./components/CompletedTodo";
 
 const styles={
     items_style:{
@@ -41,6 +42,15 @@ const HomePage=()=>{
                                     
                                     {account.user.AllTodo.length===0?<Typography variant='h6'>No Data Found</Typography>
                                     :(account.user.AllTodo.map(todo=>(<ShowAllTodo key={todo._id} data={todo} user={account.user}/>)))
+                                    }
+                            </Grid>
+                            <Grid item xs={12} >
+                                <Typography variant="h6" style={{marginTop:"20px"}}>Completed Tasks</Typography>
+                            </Grid>
+                            <Grid item xs={7}  style={styles.items_style}>
+                                    {
+                                        account.user.CompletedTodo.length==0?<Typography variant='h6'>No Data Found</Typography>:
+                                        (account.user.CompletedTodo.map(todo=>(<CompletedTodo key={todo._id} data={todo} user={account.user}/>)))
                                     }
                             </Grid>
                     </Grid>

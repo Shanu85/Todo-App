@@ -47,6 +47,19 @@ const ShowAllTodo=({data,user})=>{
         navigate('/edit',{state:data})
     };
 
+    const handleTodoDone=(event)=>{
+      dispatch(deleteTodoBegin(_id));
+      axios.
+      delete(`http://127.0.0.1:8000/userTodo/done/${user_id}/${_id}`)
+      .then(()=>{
+        dispatch(deleteTodoSuccess())
+        fetchInfoId(user_id,dispatch);
+      })
+      .catch((err)=>{
+        dispatch(deleteTodoFailure(err))
+      })
+    }
+
     const DeleteDialog=()=>{
         return(
             <Dialog
@@ -77,8 +90,7 @@ const ShowAllTodo=({data,user})=>{
         <Box sx={{ flexGrow: 1 }} >
             <Grid container spacing={2}>
                 <Grid item xs={2}>
-                    {done===true?<Checkbox style={{color:'green'}} defaultChecked/>
-                    :<Checkbox style={{color:'green'}}/>}
+                    {done!==true?<Checkbox style={{color:'green'}} onClick={handleTodoDone}/>:<></>}
                         
                 </Grid>
                 <Grid item xs={4}>
@@ -94,6 +106,7 @@ const ShowAllTodo=({data,user})=>{
                 </Grid>
              </Grid>
         </Box>
+        
     )
 }
 

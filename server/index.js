@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 // import the router from Routes
 import userRouter from './routes/Users.js'
 import cors from 'cors';
+import UserTodoRouter from './routes/UserTodo.js'
 
 const app = express();
 
@@ -30,5 +31,11 @@ connect().catch(console.error);
 app.use(bodyParser.urlencoded({limit:"30mb",extended: true}));
 app.use(bodyParser.json({limit:"30mb",extended: true}));
 app.use('/users',userRouter);  // Mount the todoRouter as middleware at path /todo
+app.use('/userTodo',UserTodoRouter);
 
 const db=mongoose.connection
+
+if(process.env.NODE_ENV== "production")
+{
+    app.use(express.static("client/build"));
+}

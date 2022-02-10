@@ -2,7 +2,7 @@ import React from "react";
 import {useEffect,Suspense } from "react";
 import { CircularProgress } from "@material-ui/core";
 import {useSelector } from 'react-redux';
-import {fetchAllTodo} from './index';
+
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import Navbar from './Navbar';
 import Start from "./Start";
@@ -34,10 +34,7 @@ const App = () =>{
         )
     }
      
-    useEffect(() => {  
-        fetchAllTodo();
-      }, []);
-
+    
     return (
         <>
             <Suspense fallback={Loading()}>

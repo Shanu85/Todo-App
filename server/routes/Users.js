@@ -1,5 +1,7 @@
 import express from 'express';
 import AllUsers from '../models/UserModel.js';
+import bcrypt from 'bcrypt';
+const saltRounds=10;
 
 const router=express.Router();
 
@@ -15,26 +17,32 @@ router.get('/list',async(req,res)=>{
  });
 
  router.post('/getUser',async (req,res)=>{
-  
-    await AllUsers.findOne({email:req.body.email}).
-   then(user=>{
-       if(user)
-       {
-           if(user.password===req.body.password)
-           {
-                res.send(user);
-           }
-           else
-           {
-               res.status(401).send({message:"Incorrect Credentials"})
-           }
-       }
-       else
-       {
-        res.status(400).json({message:"User not exists ! "});
-       }
-   })
-})
+    const email = req.body.email
+    const password = req.body.password
+    //res.status(200).send(user)
+
+    AllUsers.findOne({ email })
+        .then(user => {
+            //if user not exist than return status 400
+            if (!user) return res.status(400).json({ msg: "User not exist" })
+
+            //if user exist than compare password
+            //password comes from the user
+            //user.password comes from the database
+            bcrypt.compare(password, user.password, (err, data) => {
+                //if error than throw error
+                if (err) throw err
+
+                //if both match than you can do anything
+                if (data) {
+                    return res.send(user);
+                } else {
+                    return res.status(401).json({ msg: "Invalid credencial" })
+                }
+
+            })
+        })
+});
 
  // Getting all TODO
 router.get('/userTodoList/:id',getUser,async(req,res)=>{
@@ -80,18 +88,23 @@ router.get("/userTodo/:id/:todoId",getUser,async (req,res)=>{
 
 // Creating one User
 router.post('/',async(req,res)=>{
+    let user_password=req.body.password;
+    
+    const salt = await bcrypt.genSalt(10);
+    user_password = await bcrypt.hash(req.body.password, salt);
+    
    const newUser=new AllUsers({
     name:req.body.name,
     email:req.body.email,
-    password:req.body.password,
+    password:user_password,
     AllTodo:req.body.AllTodo
    })
+   
    await AllUsers.findOne({email:req.body.email}).
    then(user=>{
        if(user)
        {
            res.status(400).json({message:"User already exists with given email ! "});
-        //    console.log("User already exists! ")
        }
        else
        {
