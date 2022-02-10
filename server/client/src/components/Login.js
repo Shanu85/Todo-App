@@ -80,14 +80,6 @@ export default function Login() {
             >
               Sign In
             </Button>
-//             <Grid container>
-//               <Grid item xs />
-//               <Grid item>
-//                 <Link href="/SignUp" variant="body2">
-//                   {"Don't have an account? Sign Up"}
-//                 </Link>
-//               </Grid>
-//             </Grid>
           </Box>
         </Box>
         
