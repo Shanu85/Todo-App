@@ -34,8 +34,3 @@ app.use('/users',userRouter);  // Mount the todoRouter as middleware at path /to
 app.use('/userTodo',UserTodoRouter);
 
 const db=mongoose.connection
-
-if(process.env.NODE_ENV== "production")
-{
-    app.use(express.static("client/build"));
-}
