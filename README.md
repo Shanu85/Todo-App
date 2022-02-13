@@ -1,7 +1,7 @@
 # MERN Todo-App
 
 ### Introduction
-A todo website where after login, a user can add,edit,update and delete his todo. 
+A todo website where after login, a user can add, edit, update and delete his todo. Website DB store password of user in encrypted form to prevent anybody login into his/her account. 
 
 ### Tech Used
 - React, Material Ui (For frontend)
