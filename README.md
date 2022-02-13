@@ -32,5 +32,6 @@ Else first user has to login (SingUp) into the account.
 
 ![Delete](https://user-images.githubusercontent.com/63155782/153769605-7da752f7-fe39-4392-9587-7870b12f71bb.jpg)
 
+Thanks for reading.
 
 
