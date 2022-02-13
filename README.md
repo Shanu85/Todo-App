@@ -20,7 +20,7 @@ Else first user has to login (SingUp) into the account.
 
 ![Main](https://user-images.githubusercontent.com/63155782/153769473-6dfc4890-f1c1-4f7d-93ad-7d8b275d3a6a.jpg)
 
-- Now, user can add new TODO by clicking on the 'ADD' button. While adding user will have to enter a name and pick a valid date.
+- Now, user can add new TODO by clicking on the 'ADD' button. While adding a new TODO, user must have to enter a name and pick a valid date.
 
 ![Add](https://user-images.githubusercontent.com/63155782/153769520-2e2b38e1-1f09-499a-bd60-e1c29fd8b483.jpg)
 
